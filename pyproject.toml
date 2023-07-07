@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "education"
+version = "0.1.0"
+description = "Education website"
+authors = ["sudodebug <sudodebug@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.3"
+pillow = "^10.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
