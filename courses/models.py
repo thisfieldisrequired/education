@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
-from courses.fields import OrderField
+from .fields import OrderField
 
 
 class Subject(models.Model):
@@ -53,6 +53,10 @@ class Content(models.Model):
                                      limit_choices_to={'model__in': ('text', 'file', 'image', 'video')})
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey('content_type', 'object_id')
+    order = OrderField(blank=True, for_fields=['module'])
+
+    class Meta:
+        ordering = ['order']
 
 
 class ItemBase(models.Model):
