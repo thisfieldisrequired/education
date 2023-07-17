@@ -78,7 +78,7 @@
       mode: 'same-origin'
   }
 
-
+  const moduleOrderUrl = '{% url "module_order" %}';
 
   sortable('#modules', {
     forcePlaceholderSize: true,
@@ -100,7 +100,7 @@
     });
   });
 
-
+  const contentOrderUrl = '{% url "content_order" %}';
 
   sortable('#module-contents', {
     forcePlaceholderSize: true,
