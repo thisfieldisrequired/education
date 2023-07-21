@@ -16,7 +16,6 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = 'django-insecure-(y-o)4azpe7snl*0z+n=__yutl6%*d=pd4wonj!(x0*62&i=u=
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -43,9 +41,9 @@ INSTALLED_APPS = [
 
     'embed_video',
     'debug_toolbar',
+    'redisboard',
 
     'students.apps.StudentsConfig',
-
 
 ]
 
@@ -53,7 +51,9 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -80,7 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -94,7 +93,6 @@ DATABASES = {
         "PORT": "5432",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -114,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -125,7 +122,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -142,13 +138,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = reverse_lazy('student_course_list')
 
-
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
-        'LOCATION': '127.0.0.1:11211',
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379',
     }
 }
 
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 60 * 15
+CACHE_MIDDLEWARE_KEY_PREFIX = 'educa'
 
 INTERNAL_IPS = ['127.0.0.1']
