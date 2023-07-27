@@ -19,6 +19,7 @@ django-redisboard = "^8.4.0"
 attrs = "^23.1.0"
 djangorestframework = "^3.14.0"
 requests = "^2.31.0"
+channels = "3.0.5"
 
 
 [build-system]
