@@ -21,6 +21,9 @@ djangorestframework = "^3.14.0"
 requests = "^2.31.0"
 channels = "3.0.5"
 channels-redis = "3.4.1"
+flake8 = "^6.1.0"
+black = "^23.9.1"
+uwsgi = "^2.0.22"
 
 
 [build-system]

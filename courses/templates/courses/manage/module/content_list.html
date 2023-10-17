@@ -88,14 +88,9 @@
     modulesOrder = {};
     var modules = document.querySelectorAll('#modules li');
     modules.forEach(function (module, index) {
-      // update module index
       modulesOrder[module.dataset.id] = index;
-      // update index in HTML element
       module.querySelector('.order').innerHTML = index + 1;
-      // add new order to the HTTP request options
       options['body'] = JSON.stringify(modulesOrder);
-
-      // send HTTP request
       fetch(moduleOrderUrl, options)
     });
   });
@@ -110,12 +105,9 @@
     contentOrder = {};
     var contents = document.querySelectorAll('#module-contents div');
     contents.forEach(function (content, index) {
-      // update content index
       contentOrder[content.dataset.id] = index;
-      // add new order to the HTTP request options
       options['body'] = JSON.stringify(contentOrder);
 
-      // send HTTP request
       fetch(contentOrderUrl, options)
     });
   });

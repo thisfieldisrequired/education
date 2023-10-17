@@ -3,4 +3,8 @@ from courses.models import Course
 
 
 class CourseEnrollForm(forms.Form):
-    course = forms.ModelChoiceField(queryset=Course.objects.all(), widget=forms.HiddenInput)
+    """Форма регистрации регистрация на курск"""
+
+    course = forms.ModelChoiceField(
+        queryset=Course.objects.all(), widget=forms.HiddenInput
+    )
